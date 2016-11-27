@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+	<display-name>itcast-usermanage</display-name>
+
+	<!-- 项目名称 -->
+	<display-name>fastssm</display-name>
+
+	<!-- spring 配置文件 位于resource目录下的spring文件夹中 classpath表示src/main/resources目录 -->
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext*.xml</param-value>
+	</context-param>
+
+	<!--Spring的ApplicationContext 载入 （spring 启动的监听器） -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<!-- 编码过滤器，以UTF8编码 只能解决post请求乱码问题 无法解决get乱码问题 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 配置SpringMVC框架入口 -->
+	<servlet>
+		<servlet-name>fastssm</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!--springmvc的配置文件 -->
+			<param-value>classpath:spring/fastssm-servlet.xml</param-value>
+		</init-param>
+		<!--1：容器启动时就初始化这个servlet 0：第一次访问的时候初始化 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>fastssm</servlet-name>
+		<!-- 可行：/、*.xxx、/xxx/* 不行：/* url-pattern有5种配置模式： （1）/xxx:完全匹配/xxx的路径 （2）/xxx/*:匹配以/xxx开头的路径，请求中必须包含xxx。 
+			（3）/*：匹配/下的所有路径,请求可以进入到action或controller，但是转发jsp时再次被拦截，不能访问jsp界面。 （4）.xx:匹配以xx结尾的路径，所有请求必须以.xx结尾，但不会影响访问静态文件。 
+			（5）/:默认模式，未被匹配的路径都将映射到刺servlet，对jpg，js，css等静态文件也将被拦截，不能访问。 如下只能接受/rest下的访问 -->
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+
+</web-app>
