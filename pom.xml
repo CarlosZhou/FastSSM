@@ -15,6 +15,7 @@
 		<spring.version>4.1.3.RELEASE</spring.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis.spring.version>1.2.2</mybatis.spring.version>
+		<mybatis.paginator.version>1.2.15</mybatis.paginator.version>
 		<mysql.version>5.1.32</mysql.version>
 		<slf4j.version>1.6.4</slf4j.version>
 		<jackson.version>2.4.2</jackson.version>
@@ -73,7 +74,23 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis.spring.version}</version>
 		</dependency>
-
+		<!-- 分页助手 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>3.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<!-- 通用Mapper -->
+		<dependency>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>mapper</artifactId>
+			<version>2.3.4</version>
+		</dependency>
 		<!-- MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -181,12 +198,12 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!-- 配置Tomcat插件 -->
+				<!-- 配置Tomcat插件  包括配置端口-->
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<configuration>
-						<port>80</port>
+						<port>8080</port>
 						<path>/</path>
 						<!-- http://127.0.0.1:{port}/{path} 一般路径直接/ 不需要加项目名称 -->
 					</configuration>
