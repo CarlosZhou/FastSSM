@@ -47,11 +47,44 @@ public class UserService {
         return new EasyUIResult(pageInfo.getTotal(),pageInfo.getList());
     }
 
+    /**
+     * 根据逐渐查询
+     * @param id
+     * @return
+     */
+    
     public User queryUserById(Long id) {
-
         User user = userMapper.selectByPrimaryKey((Long)id);
         return user;
     }
+
+    /**
+     * 保存
+     * @param user
+     * @return
+     */
+	public Boolean saveUser(User user) {
+		return  userMapper.insert(user)==1;
+	}
+
+    /**
+     * 更新
+     * @param user
+     * @return
+     */
+	public Boolean updateUser(User user) {
+		return userMapper.updateByPrimaryKeySelective(user)==1;
+	}
+
+    /**
+     * 删除
+     * @param user
+     * @return
+     */
+	public Boolean deleteUser(Long id) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteByPrimaryKey(id)==1;
+	}
 
     
     

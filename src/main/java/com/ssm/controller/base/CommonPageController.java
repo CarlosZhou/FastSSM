@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * All rights Reserved, Designed By carlos-y
  * @ClassName:  CommonPageController   
- * @Description:通用控制层  页面跳转
+ * @Description:通用控制层  控制所有请求页面跳转
  * @author: carlos-y
  * @date:   2016年11月28日 下午2:01:51
  */

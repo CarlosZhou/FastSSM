@@ -50,5 +50,86 @@ public class NewUserController {
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+    
+    /**
+     * 
+     * RESTful demo  提交资源 POST
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> saveUser(User user){
+    	
+    	try {
+			Boolean bool = userService.saveUser(user);
+			if(bool){
+				 return ResponseEntity.status(HttpStatus.CREATED).build();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 
+    }
+
+    
+    /**
+     * 
+     * restFul demo  修改资源 PUT
+     * 默认情况下 PUT无法提交表单数据
+     * 
+     * 解决方法：需要在web.xml中加过滤器
+     * org.springframework.web.filter.HttpPutFormContentFilter
+     */
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateUser(User user){
+    	
+    	try {
+			Boolean bool = userService.updateUser(user);
+			if(bool){
+				//204 操作成功 无返回内容
+				 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+
+    }
+    
+    
+    
+    /**
+     * 
+     * restFul demo  修改资源 DELETE 
+     * 默认情况下 DELETE无法提交表单数据
+     * 
+     * 解决方法：需要在web.xml中加过滤器 并且制定_method 方法
+     * 注意请求的时候不能是DELETE，只能是POST 但是需要加个请求参数：key：_mehtod : value:DELETE
+     * org.springframework.web.filter.HiddenHttpMethodFilter
+     */
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUser(@RequestParam(value="id",defaultValue="0") Long id){
+    	
+    	try {
+    		if(id.longValue()==0){
+				 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+    		}
+    		
+			Boolean bool = userService.deleteUser(id);
+			if(bool){
+				//204 操作成功 无返回内容
+				 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+
+    }
 }
