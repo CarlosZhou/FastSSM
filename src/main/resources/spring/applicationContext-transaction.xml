@@ -20,6 +20,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+
 	<!-- 定义事务策略 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>

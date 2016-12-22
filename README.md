@@ -17,7 +17,7 @@
 * 数据库连接池框架：[Alibaba Druid 1+](https://github.com/alibaba/druid)
 * 工具类
    * Json转换:[JackSon](https://github.com/FasterXML/jackson)
-   * 数据分页及通用Mapper:[Mybatis-PageHelper](https://github.com/pagehelper/Mybatis-PageHelper)、MapperInterceptor
+   * 数据分页及通用Mapper:[Mybatis-PageHelper](https://github.com/pagehelper/Mybatis-PageHelper)、[MapperInterceptor](https://github.com/abel533/Mapper)
    * 工具库:Apache Commons
    
 
@@ -28,3 +28,11 @@
 * 动态语言：JSP
 * JS框架：Easy UI 1.4
 * CSS框架：Bootstrap3+
+
+
+
+
+
+
+###交流
+QQ group：204970886
